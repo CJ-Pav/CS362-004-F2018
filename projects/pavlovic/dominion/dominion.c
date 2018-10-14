@@ -643,10 +643,14 @@ int getCost(int cardNumber) {
 /* Refactored Card functions below */
 // 1) smithy
 int _smithy(int currentPlayer, struct gameState *state, int handPos) {
-    int i = 0;
+    int i;
 
+	/***
+	* bug 1: loop will run one too few, drawing 2 cards instead of the intended 3
+	***/
     //+3 Cards
-    for (i = 0; i < 3; i++) {
+    for (i = 1; i < 3; i++) {
+	// for (i = 0; i < 3; i++) {
         drawCard(currentPlayer, state);
     }
 
@@ -658,7 +662,11 @@ int _smithy(int currentPlayer, struct gameState *state, int handPos) {
 
 // adventurer
 int _adventurer(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand, int z) {
-    while(drawntreasure<2){
+	/***
+	* bug 2: loop will run once extra (turned < to <= in while statement)
+	***/
+    while(drawntreasure<=2) {
+	// while(drawntreasure<2) {
         if (state->deckCount[currentPlayer] <1){ // if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -686,8 +694,12 @@ int _salvager(struct gameState *state, int choice1, int currentPlayer, int handP
 	state->numBuys++;
 
 	if (choice1) {
-		//gain coins equal to trashed card
-		state->coins = state->coins + getCost( handCard(choice1, state) );
+		// gain coins equal to trashed card
+		/***
+		 * bug 3: player does not receive coin from salvage
+		 * fix: uncomment line below
+		***/
+		// state->coins = state->coins + getCost( handCard(choice1, state) );
 
 		//trash card
 		discardCard(choice1, currentPlayer, state, 1);
@@ -730,7 +742,12 @@ int _treasure_map(int index, struct gameState *state, int handPos, int currentPl
 	if (index > -1) {
 		//trash both treasure cards
 		discardCard(handPos, currentPlayer, state, 1);
-		discardCard(index, currentPlayer, state, 1);
+
+		/***
+		 * bug 4: treasure card remains in deck
+		 * fix: uncomment line below
+		***/
+		// discardCard(index, currentPlayer, state, 1);
 
 		//gain 4 Gold cards
 		for (i = 0; i < 4; i++) {

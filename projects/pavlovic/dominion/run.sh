@@ -1,15 +1,24 @@
-#!/bin/bash
+#!/bin/bash -e
+# Author: Chris Pavlovich
+# Purpose: Compile & run assignment
+
+# init status
+status=0
 
 # compile
 make clean
 reset
 make all
 
-if [ $? -eq 0 ]; then
+# set status
+status=$?
+
+# run if no errors, error & exit otherwise
+if [ $status -eq 0 ]; then
     ./playdom 30
 else
     echo "Error: compiler exited with non-zero status" >&2
-    exit 1
+    status=1
 fi
 
-exit 0
+exit $status
