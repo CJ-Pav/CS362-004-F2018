@@ -716,8 +716,33 @@ int _sea_hag(struct gameState *state, int currentPlayer) {
 }
 
 // 5) treasure_map
-int _treasure_map() {
-    return 0;
+int _treasure_map(int index, struct gameState *state, int handPos, int currentPlayer) {
+	int i;
+
+	//search hand for another treasure_map
+	index = -1;
+	for (i = 0; i < state->handCount[currentPlayer]; i++) {
+		if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
+		  index = i;
+		  break;
+		}
+	}
+	if (index > -1) {
+		//trash both treasure cards
+		discardCard(handPos, currentPlayer, state, 1);
+		discardCard(index, currentPlayer, state, 1);
+
+		//gain 4 Gold cards
+		for (i = 0; i < 4; i++) {
+			gainCard(gold, state, 1, currentPlayer);
+		}
+
+		//return success
+		return 1;
+	}
+
+	//no second treasure_map found in hand
+	return -1;
 }
 /* END REFACTORED CARDS */
 
@@ -726,7 +751,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	int j;
 	int k;
 	int x;
-	int index;
+	int index = 0;
 	int currentPlayer = whoseTurn(state);
 	int nextPlayer = currentPlayer + 1;
 
@@ -1244,20 +1269,20 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  return 0;
 
 	case salvager:
-	//   //+1 buy
-	//   state->numBuys++;
-    //
-	//   if (choice1)
-	// {
-	//   //gain coins equal to trashed card
-	//   state->coins = state->coins + getCost( handCard(choice1, state) );
-	//   //trash card
-	//   discardCard(choice1, currentPlayer, state, 1);
-	// }
-    //
-	//   //discard card
-	//   discardCard(handPos, currentPlayer, state, 0);
-	//   return 0;
+    	//   //+1 buy
+    	//   state->numBuys++;
+        //
+    	//   if (choice1)
+    	// {
+    	//   //gain coins equal to trashed card
+    	//   state->coins = state->coins + getCost( handCard(choice1, state) );
+    	//   //trash card
+    	//   discardCard(choice1, currentPlayer, state, 1);
+    	// }
+        //
+    	//   //discard card
+    	//   discardCard(handPos, currentPlayer, state, 0);
+    	//   return 0;
         status = _salvager(state, choice1, currentPlayer, handPos);
         return status;
 
@@ -1270,35 +1295,37 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		// 		state->deck[i][state->deckCount[i]--] = curse; // Top card now a curse
 		// 	}
 		// }
-        status = _sea_hag(state, currentPlayer)
-		return 0;
+        status = _sea_hag(state, currentPlayer);
+		return status;
 
 	case treasure_map:
-		//search hand for another treasure_map
-		index = -1;
-		for (i = 0; i < state->handCount[currentPlayer]; i++) {
-			if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
-		      index = i;
-		      break;
-		    }
-		}
-		if (index > -1) {
-			//trash both treasure cards
-			discardCard(handPos, currentPlayer, state, 1);
-			discardCard(index, currentPlayer, state, 1);
-
-			//gain 4 Gold cards
-			for (i = 0; i < 4; i++)
-			{
-			  gainCard(gold, state, 1, currentPlayer);
-			}
-
-			//return success
-			return 1;
-		}
-
-		//no second treasure_map found in hand
-		return -1;
+		// //search hand for another treasure_map
+		// index = -1;
+		// for (i = 0; i < state->handCount[currentPlayer]; i++) {
+		// 	if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
+		//       index = i;
+		//       break;
+		//     }
+		// }
+		// if (index > -1) {
+		// 	//trash both treasure cards
+		// 	discardCard(handPos, currentPlayer, state, 1);
+		// 	discardCard(index, currentPlayer, state, 1);
+        //
+		// 	//gain 4 Gold cards
+		// 	for (i = 0; i < 4; i++)
+		// 	{
+		// 	  gainCard(gold, state, 1, currentPlayer);
+		// 	}
+        //
+		// 	//return success
+		// 	return 1;
+		// }
+        //
+		// //no second treasure_map found in hand
+		// return -1;
+        status = _treasure_map(index, state, handPos, currentPlayer);
+        return status;
 	}
 
 	return -1;
