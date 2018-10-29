@@ -6,16 +6,16 @@
 #include <stdlib.h>
 
 int compare(const void* a, const void* b) {
-  if (*(int*)a > *(int*)b)
-    return 1;
-  if (*(int*)a < *(int*)b)
-    return -1;
-  return 0;
+    if (*(int*)a > *(int*)b)
+        return 1;
+    if (*(int*)a < *(int*)b)
+        return -1;
+    return 0;
 }
 
 struct gameState* newGame() {
-  struct gameState* g = malloc(sizeof(struct gameState));
-  return g;
+    struct gameState* g = malloc(sizeof(struct gameState));
+    return g;
 }
 
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
@@ -131,23 +131,19 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
     }
 
-  ////////////////////////
-  //supply intilization complete
-
-  //set player decks
-  for (i = 0; i < numPlayers; i++)
-    {
-      state->deckCount[i] = 0;
-      for (j = 0; j < 3; j++)
-	{
-	  state->deck[i][j] = estate;
-	  state->deckCount[i]++;
-	}
-      for (j = 3; j < 10; j++)
-	{
-	  state->deck[i][j] = copper;
-	  state->deckCount[i]++;
-	}
+    ////////////////////////
+    //supply intilization complete
+    //set player decks
+    for (i = 0; i < numPlayers; i++) {
+        state->deckCount[i] = 0;
+        for (j = 0; j < 3; j++) {
+            state->deck[i][j] = estate;
+            state->deckCount[i]++;
+        }
+        for (j = 3; j < 10; j++) {
+          state->deck[i][j] = copper;
+          state->deckCount[i]++;
+        }
     }
 
   //shuffle player decks
