@@ -54,7 +54,7 @@ unittestresults: test1 test2 test3 test4
 	echo "test4" >> unittestresults
 	./text4 >> unittestresults
 
-all: playdom player test
+all: playdom player unittestresults
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
