@@ -33,14 +33,14 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 unittestresults: unittest1.c unittest2.c unittest3.c unittest4.c
-	echo "test1" > unittestresults.out
-	./test1 >> unittestresults.out
-	echo "test2" >> unittestresults.out
-	./test2 >> unittestresults.out
-	echo "test3" >> unittestresults.out
-	./test3 >> unittestresults.out
-	echo "test4" >> unittestresults.out
-	./text4 >> unittestresults.out
+	echo "test1" > unittestresults
+	./unittestresults >> unittestresults.out
+	# echo "test2" >> unittestresults.out
+	# ./test2 >> unittestresults.out
+	# echo "test3" >> unittestresults.out
+	# ./test3 >> unittestresults.out
+	# echo "test4" >> unittestresults.out
+	# ./text4 >> unittestresults.out
 
 all: playdom player unittestresults
 
