@@ -19,7 +19,7 @@ int main() {
 
    struct gameState G;
 
-   int i;
+   int i, returnValue;
 
    int start = -1;
 
