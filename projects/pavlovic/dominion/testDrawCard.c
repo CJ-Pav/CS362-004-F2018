@@ -13,12 +13,12 @@ int checkDrawCard(int p, struct gameState *post) {
   memcpy (&pre, post, sizeof(struct gameState));
 
   int r;
-  //  printf ("drawCard PRE: p %d HC %d DeC %d DiC %d\n",
+  // printf ("drawCard PRE: p %d HC %d DeC %d DiC %d\n",
   //	  p, pre.handCount[p], pre.deckCount[p], pre.discardCount[p]);
-    
+
   r = drawCard (p, post);
 
-  //printf ("drawCard POST: p %d HC %d DeC %d DiC %d\n",
+  // printf ("drawCard POST: p %d HC %d DeC %d DiC %d\n",
   //      p, post->handCount[p], post->deckCount[p], post->discardCount[p]);
 
   if (pre.deckCount[p] > 0) {
@@ -34,7 +34,7 @@ int checkDrawCard(int p, struct gameState *post) {
     pre.discardCount[p] = 0;
   }
 
-  assert (r == 0);
+  assert(r == 0);
 
   assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
 }
@@ -75,7 +75,7 @@ int main () {
     for (deckCount = 0; deckCount < 5; deckCount++) {
       for (discardCount = 0; discardCount < 5; discardCount++) {
 	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
+	  memset(&G, 23, sizeof(struct gameState));
 	  r = initializeGame(2, k, 1, &G);
 	  G.deckCount[p] = deckCount;
 	  memset(G.deck[p], 0, sizeof(int) * deckCount);

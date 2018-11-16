@@ -2,71 +2,69 @@
  * Name: Christopher Pavlovich
  * Program: unittest2.cpp
  ************************************************/
-
-#include <iostream>
 #include "dominion.h"
+#include "dominion_helpers.h"
+#include "rngs.h"
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 
-using namespace std;
+/***
+ * unit test 2
+ * testing: shuffle()
+***/
+int main(int argc, char *argv[]) {
+	struct gameState G;
+	int i, status = 0, a = -1, set[10] = {adventurer, gardens, embargo, mine, cutpurse,
+		sea_hag, tribute, village, minion, smithy};
 
-int main() {
-   /***
-   unit test 2
-   testing: shuffle()
-   ***/
+	printf("Begin unit test 2...\n");
+	printf("Test function: shuffle\n");
 
-   cout << "Begin unit test 2...\n";
-   cout << "Test function: shuffle\n";
+	memset(&G, 'z', sizeof(struct gameState));
 
-   struct gameState G;
+	initializeGame(4, set, argv[1]-48, &G);
 
-   int i, returnValue;
+	printf ("Rough guide to locations in structure:\n");
+	printf ("0: numPlayers\n");
+	printf ("%ld: supplyCount[0]\n", ((long)&(G.supplyCount[0]))-((long)&G));
+	printf ("%ld: embargoTokens[0]\n", ((long)&(G.embargoTokens[0]))-((long)&G));
+	printf ("%ld: hand[0][0]\n", ((long)&(G.hand[0][0]))-(long)(&G));
+	printf ("%ld: deck[0][0]\n", ((long)&(G.deck[0][0]))-(long)(&G));
+	printf ("%ld: discard[0][0]\n", ((long)&(G.discard[0][0]))-(long)(&G));
+	printf ("%ld: playerCards[0]\n", ((long)&(G.playedCards[0]))-(long)(&G));
 
-   int start = -1;
+	for (i = 0; i < sizeof(struct gameState); i++) {
+		if (((char*)&G)[i] == 'z') {
+			if (a == -1) {
+				a = i;
+			}
+		}
+		else{
+			if (a != -1) {
+				if (a == (i-1)) {
+					printf ("Byte %d uninitialized.\n", a);
+				}
+				else {
+					printf ("Bytes %d-%d uninitialized.\n", a, i-1);
+				}
+				a = -1;
+			}
+		}
+	}
 
-   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-         sea_hag, tribute, smithy};
+	if (a != -1) {
+		if (a == (i-1)) {
+			printf ("Byte %d uninitialized.\n", a);
+		}
+		else {
+			printf ("Bytes %d-%d uninitialized.\n", a, i-1);
+		}
+	}
 
-   memset(&G, 'z', sizeof(struct gameState));
+	status = shuffle(0, G);
 
-   initializeGame(4, k, atoi(argv[1]), &G);
+	printf("shuffle return value: %d", status);
 
-   printf ("Rough guide to locations in structure:\n");
-   printf ("0: numPlayers\n");
-   printf ("%ld: supplyCount[0]\n", ((long)&(G.supplyCount[0]))-((long)&G));
-   printf ("%ld: embargoTokens[0]\n", ((long)&(G.embargoTokens[0]))-((long)&G));
-   printf ("%ld: hand[0][0]\n", ((long)&(G.hand[0][0]))-(long)(&G));
-   printf ("%ld: deck[0][0]\n", ((long)&(G.deck[0][0]))-(long)(&G));
-   printf ("%ld: discard[0][0]\n", ((long)&(G.discard[0][0]))-(long)(&G));
-   printf ("%ld: playerCards[0]\n", ((long)&(G.playedCards[0]))-(long)(&G));
-
-   for (i = 0; i < sizeof(struct gameState); i++) {
-     if (((char*)&G)[i] == 'z') {
-       if (start == -1) {
-  start = i;
-       }
-     } else{
-       if (start != -1) {
-  if (start == (i-1)) {
-    printf ("Byte %d uninitialized.\n", start);
-  } else {
-    printf ("Bytes %d-%d uninitialized.\n", start, i-1);
-  }
-  start = -1;
-       }
-     }
-   }
-
-   if (start != -1) {
-     if (start == (i-1)) {
-       printf ("Byte %d uninitialized.\n", start);
-     } else {
-       printf ("Bytes %d-%d uninitialized.\n", start, i-1);
-     }
-   }
-
-   returnValue = shuffle(0, G)
-
-   cout << "Return value of game shuffle: " << returnValue << endl;
-
-   return 0;
+	return 0;
 }
