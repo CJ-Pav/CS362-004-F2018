@@ -43,16 +43,16 @@ int main() {
    for (i = 0; i < sizeof(struct gameState); i++) {
      if (((char*)&G)[i] == 'z') {
        if (start == -1) {
-  start = i;
+          start = i;
        }
      } else{
        if (start != -1) {
-  if (start == (i-1)) {
-    printf ("Byte %d uninitialized.\n", start);
-  } else {
-    printf ("Bytes %d-%d uninitialized.\n", start, i-1);
-  }
-  start = -1;
+          if (start == (i-1)) {
+            printf ("Byte %d uninitialized.\n", start);
+          } else {
+            printf ("Bytes %d-%d uninitialized.\n", start, i-1);
+          }
+          start = -1;
        }
      }
    }
