@@ -7,7 +7,7 @@
 #include "rngs.h"
 #include <stdio.h>
 #include <string.h>
-#include <cmath>
+#include <math.h>
 
 /***
  * unit test 4
@@ -43,10 +43,10 @@ int main(int argc, char *argv[]) {
 		else {
 			if (a != -1) {
 				if (a == (i-1)) {
-					printf ("Byte %d uninitialized.\n", a);
+					printf ("Byte %d not initialized.\n", a);
 				}
 				else {
-					printf ("Bytes %d-%d uninitialized.\n", a, i-1);
+					printf ("Bytes %d-%d not initialized.\n", a, i-1);
 				}
 				a = -1;
 			}
@@ -55,10 +55,10 @@ int main(int argc, char *argv[]) {
 
 	if (a != -1) {
 		if (a == (i-1)) {
-			printf ("Byte %d uninitialized.\n", a);
+			printf ("Byte %d not initialized.\n", a);
 		}
 		else {
-			printf ("Bytes %d-%d uninitialized.\n", a, i-1);
+			printf ("Bytes %d-%d not initialized.\n", a, i-1);
 		}
 	}
 

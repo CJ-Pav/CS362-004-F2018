@@ -34,11 +34,14 @@ player: player.c interface.o
 
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o
-	./unittest1 &> unittestresult
 
-unittest2:
+unittest2: unittest2.c dominion.o rngs.o
 
-unittestresults: unittest1 unittest2 unittest3 unittest4
+uTests: unittest1 unittest2 unittest3 unittest4
+
+cTests:
+
+unittestresults:
 	./unittestresults >> unittestresults.out
 	# echo "test2" >> unittestresults.out
 	# ./test2 >> unittestresults.out
