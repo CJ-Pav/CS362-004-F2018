@@ -124,6 +124,7 @@ protected void setUp() {
 	
     // 1 some test URLs with all parts being valid:
 	boolean [] resultTrue = new boolean[7];
+	resultTrue[0] = urlVal.isValid("http://www.google.com");
 	resultTrue[0] = urlVal.isValid("http://www.google.com:80/test1");
 	resultTrue[1] = urlVal.isValid("http://go.com:65535/test1/");
 	resultTrue[2] = urlVal.isValid("ftp://go.au:0/test1//file");
