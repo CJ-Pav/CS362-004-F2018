@@ -33,7 +33,7 @@ public class UrlValidatorTest extends TestCase {
         assertTrue(urlVal.isValid("")); //null
 
 
-        UrlValidatorTest("http://www.apache.org/licenses/LICENSE-2.0");
+//        UrlValidatorTest("http://www.apache.org/licenses/LICENSE-2.0");
 
     }
 
@@ -50,7 +50,9 @@ public class UrlValidatorTest extends TestCase {
 
     public void testIsValid() {
         //You can use this function for programming based testing
-
+    	
+    	// loop through multiple symbol options, nest loops/symbols
+    	
     }
 
 //	public static void main(String[] args) {

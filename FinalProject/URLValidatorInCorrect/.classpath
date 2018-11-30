@@ -3,5 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="C:/Users/cpav/code/git-hub/CS362-004-F2018/FinalProject/URLValidatorCorrect/hamcrest-core-2.1-rc3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/cpav/code/git-hub/CS362-004-F2018/FinalProject/URLValidatorCorrect/junit-4.13-beta-1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
