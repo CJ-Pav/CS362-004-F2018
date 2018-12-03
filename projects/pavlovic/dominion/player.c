@@ -1,13 +1,3 @@
-/* 	Interactive Dominion Interface
-	Version 7
-
-	Sam Heinith CS362
-	Questions/Comments:
-	heiniths@onid.orst.edu
-	1/26/2010
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -119,8 +109,8 @@ int main(int argc, char* argv[]) {
 
 
 		if(isBot[currentPlayer] == TRUE) {
-				executeBotTurn(currentPlayer, &turnNum, game);
-				continue;
+			executeBotTurn(currentPlayer, &turnNum, game);
+			continue;
 		}
 
 		printf("$ ");

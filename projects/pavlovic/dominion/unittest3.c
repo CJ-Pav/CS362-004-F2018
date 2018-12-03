@@ -25,14 +25,14 @@ int main(int argc, char *argv[]) {
 
 	initializeGame(4, set, *argv[1]-48, &G);
 
-	printf ("Rough guide to locations in structure:\n");
-	printf ("0: numPlayers\n");
-	printf ("%ld: supplyCount[0]\n", ((long)&(G.supplyCount[0]))-((long)&G));
-	printf ("%ld: embargoTokens[0]\n", ((long)&(G.embargoTokens[0]))-((long)&G));
-	printf ("%ld: hand[0][0]\n", ((long)&(G.hand[0][0]))-(long)(&G));
-	printf ("%ld: deck[0][0]\n", ((long)&(G.deck[0][0]))-(long)(&G));
-	printf ("%ld: discard[0][0]\n", ((long)&(G.discard[0][0]))-(long)(&G));
-	printf ("%ld: playerCards[0]\n", ((long)&(G.playedCards[0]))-(long)(&G));
+	printf("Rough guide to locations in structure:\n");
+	printf("0: numPlayers\n");
+	printf("%ld: supplyCount[0]\n", ((long)&(G.supplyCount[0]))-((long)&G));
+	printf("%ld: embargoTokens[0]\n", ((long)&(G.embargoTokens[0]))-((long)&G));
+	printf("%ld: hand[0][0]\n", ((long)&(G.hand[0][0]))-(long)(&G));
+	printf("%ld: deck[0][0]\n", ((long)&(G.deck[0][0]))-(long)(&G));
+	printf("%ld: discard[0][0]\n", ((long)&(G.discard[0][0]))-(long)(&G));
+	printf("%ld: playerCards[0]\n", ((long)&(G.playedCards[0]))-(long)(&G));
 
 	for (i = 0; i < sizeof(struct gameState); i++) {
 		if (((char*)&G)[i] == 'z') {
@@ -43,10 +43,10 @@ int main(int argc, char *argv[]) {
 		else{
 			if (a != -1) {
 				if (a == (i-1)) {
-					printf ("Byte %d not initialized.\n", a);
+					printf("Byte %d not initialized.\n", a);
 				}
 				else {
-					printf ("Bytes %d-%d not initialized.\n", a, i-1);
+					printf("Bytes %d-%d not initialized.\n", a, i-1);
 				}
 				a = -1;
 			}
@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
 	}
 	if (a != -1) {
 		if (a == (i-1)) {
-			printf ("Byte %d not initialized.\n", a);
+			printf("Byte %d not initialized.\n", a);
 		}
 		else {
-			printf ("Bytes %d-%d not initialized.\n", a, i-1);
+			printf("Bytes %d-%d not initialized.\n", a, i-1);
 		}
 	}
 
