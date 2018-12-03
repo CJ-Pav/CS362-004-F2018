@@ -7,7 +7,7 @@
 #include "rngs.h"
 #include <stdio.h>
 #include <string.h>
-#include <cmath>
+#include <math.h>
 
 /***
  * unit test 3
