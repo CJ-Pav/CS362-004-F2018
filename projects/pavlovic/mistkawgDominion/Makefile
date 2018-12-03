@@ -1,6 +1,6 @@
 CFLAGS= -Wall -fpic -coverage -lm -std=c99
 
-rngs.o: rngs.c
+rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
 dominion.o: dominion.h dominion.c rngs.o
@@ -8,7 +8,7 @@ dominion.o: dominion.h dominion.c rngs.o
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
-#To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
+#To run playdom you need to enter: ./playdom <any integer number> like ./playdom 10*/
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -29,11 +29,34 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player
+# unittest1: unittest1.c dominion.o rngs.o
+# 	gcc -o unittest1.out unittest1.c -g dominion.o rngs.o $(CFLAGS)
+#
+# unittest2: unittest2.c dominion.o rngs.o
+# 	gcc -o unittest2.out unittest2.c -g $(CFLAGS)
+
+uTests: smithytest1.c interface.o # unittest3 unittest4
+	gcc -o unittests.out smithytest1.c -g dominion.o rngs.o $(CFLAGS)
+# cTests:
+
+unittestresults: unittest1 unitest2
+	./unittestresults &> unittestresults.out
+
+	./unittest1 >> unittestresult.out
+	gcov unittest1.c >> unittestresult.out
+	cat unittest1.c.gcov >> unittestresult.out
+
+	# echo "test2" >> unittestresults.out
+	# ./test2 >> unittestresults.out
+	# echo "test3" >> unittestresults.out
+	# ./test3 >> unittestresults.out
+	# echo "test4" >> unittestresults.out
+	# ./text4 >> unittestresults.out
+
+all: playdom player uTests
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe badTestDrawCard
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe

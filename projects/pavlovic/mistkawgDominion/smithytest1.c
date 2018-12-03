@@ -18,7 +18,7 @@
 ***/
 int main(int argc, char *argv[]) {
 	struct gameState G;
-	int i, status[5], a = -1, expectedHandCount = 0;
+	int i, status = 0, expectedHandCount = 0, actualHandCount = 0, seed;
 	int set[10] = {adventurer, gardens, embargo, mine, cutpurse,
 		sea_hag, tribute, village, minion, smithy};
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
 	printf("Checking deck count.\n");
 
-	for(int i = 0; i < 100; ++i) {
+	for(i = 0; i < 100; ++i) {
 		// reset randomizer & reinit gameState
 		seed = rand();
 		memset(&G, 0, sizeof(struct gameState));
@@ -48,12 +48,13 @@ int main(int argc, char *argv[]) {
 		// expectedHandCount = G.handCount[1] + 2;
 		expectedHandCount = G.handCount[1] + 2;
 
-		cardSmithy(&G, int 1, int 1);
+		cardSmithy(&G, 1, 1);
 
 		actualHandCount = G.handCount[1];
 
-		if(G.deckCount[j] != expectedHandCount) {
-			printf("Incorrect card draw. Expected hand count: %d, Actual hand count: %d\n", expectedHandCount, actualHandCount)
+		if(G.deckCount[1] != expectedHandCount) {
+			printf("Incorrect card draw. Expected hand count: %d, Actual hand count: %d\n", expectedHandCount, actualHandCount);
+			status++;
 		}
 
 	}
