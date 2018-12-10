@@ -1,76 +1,59 @@
-/************************************************
- * Name: Christopher Pavlovich
- * Program: unittest1.c
- ************************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
 #include <string.h>
-#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "rngs.h"
+#include "assert.h"
+#include <time.h>
 
-/***
- * unit test 1
- * testing: compare()
-***/
-int main(int argc, char *argv[]) {
-	struct gameState G;
-	int i, status = 0, a = -1, set[10] = {adventurer, gardens, embargo, mine, cutpurse,
-		sea_hag, tribute, village, minion, smithy};
+int main() {
+    struct gameState *game;
+    int i, testPassed = 0, testFailed = 0, player, players, seed, handLen, deckSize, discardCount;
 
-	printf("Begin unit test 1...\n");
-	printf("Test function: compare\n");
+	srand(time(NULL));
+    printf("\nStarting testing for Smithy\n");
 
-	memset(&G, 'z', sizeof(struct gameState));
+    for(i = 0; i < 1000; i++) {
+        int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
+                         minion, sea_hag, smithy, tribute, village};
+        players = rand() % MAX_PLAYERS;
+        seed = rand();
+        game = malloc(sizeof(struct gameState));
+        initializeGame(players, cards, seed, game);
+        player = 0;
+        game->deckCount[player] = rand() % MAX_DECK;
+        game->handCount[player] = rand() % MAX_HAND;
 
-	initializeGame(4, set, *(argv[1]) - 48, &G);
 
-	printf ("Layout...\n");
-	printf ("0: numPlayers\n");
-	printf ("%ld: supplyCount[0]\n", ((long)&(G.supplyCount[0]))-((long)&G));
-	printf ("%ld: embargoTokens[0]\n", ((long)&(G.embargoTokens[0]))-((long)&G));
-	printf ("%ld: hand[0][0]\n", ((long)&(G.hand[0][0]))-(long)(&G));
-	printf ("%ld: deck[0][0]\n", ((long)&(G.deck[0][0]))-(long)(&G));
-	printf ("%ld: discard[0][0]\n", ((long)&(G.discard[0][0]))-(long)(&G));
-	printf ("%ld: playerCards[0]\n", ((long)&(G.playedCards[0]))-(long)(&G));
+        handLen = game->handCount[player];
+        deckSize = game->deckCount[player];
+        discardCount = game->playedCardCount;
 
-	for (i = 0; i < sizeof(struct gameState); i++) {
-		if (((char*)&G)[i] == 'z') {
-			if (a == -1) {
-				a = i;
-			}
-		}
-		else{
-			if (a != -1) {
-				if (a == (i-1)) {
-					printf ("Byte %d not initialized.\n", a);
-				}
-				else {
-					printf ("Bytes %d-%d not initialized.\n", a, i-1);
-				}
-				a = -1;
-			}
-		}
-	}
+        cardSmithy(game, 0, player);
 
-	if (a != -1) {
-		if (a == (i-1)) {
-			printf ("Byte %d not initialized\n", a);
-		}
+        if(game->playedCardCount != (discardCount+1)) {
+            printf("Test %d failed: Smithy card not succesfully discarded\n", i+1);
+            testFailed++;
+        }
+
+        else if(game->handCount[player] != (handLen+2)) {
+            printf("Test %d failed: not enough cards drawn\n", i+1);
+            testFailed++;
+        }
+
+        else if(game->deckCount[player] != (deckSize - 3)) {
+            printf("Test %d failed: not enough cards drawn\n", i+1);
+            testFailed++;
+        }
+
         else {
-			printf ("Bytes %d-%d not initialized.\n", a, i-1);
-		}
-	}
+            printf("Test %d passed\n", i+1);
+            testPassed++;
+        }
 
-	// compare 1 and 0
-	status = compare(1, 0);
+        free(game);
+    }
 
-	// compare 2 and 17
-	status = compare(2, 17);
-
-	// compare 23 and -3
-	status = compare(23, -3);
-
-	return 0;
->>>>>>> origin/pavlovic-assignment-4
+    printf("Smithy test results: %d tests passed, %d tests failed\n\n", testPassed, testFailed);
 }
