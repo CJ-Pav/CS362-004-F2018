@@ -86,7 +86,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
       state->supplyCount[duchy] = 12;
       state->supplyCount[province] = 12;
     }
-
+    
   //set number of Treasure cards
   state->supplyCount[copper] = 60 - (7 * numPlayers);
   state->supplyCount[silver] = 40;
