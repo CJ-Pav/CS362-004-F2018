@@ -7,11 +7,16 @@
 #include "assert.h"
 #include <time.h>
 
+/***
+ * unit test 1
+ * testing: shuffle()
+***/
 int main() {
     struct gameState *game;
     int i, testPassed = 0, testFailed = 0, player, players, seed, handLen, deckSize, discardCount;
 
 	srand(time(NULL));
+
     printf("\nStarting testing for Smithy\n");
 
     for(i = 0; i < 1000; i++) {
@@ -19,7 +24,7 @@ int main() {
                          minion, sea_hag, smithy, tribute, village};
         players = rand() % MAX_PLAYERS;
         seed = rand();
-        game = malloc(sizeof(struct gameState));
+        game = (struct gameState *) malloc(sizeof(struct gameState));
         initializeGame(players, cards, seed, game);
         player = 0;
         game->deckCount[player] = rand() % MAX_DECK;
@@ -37,7 +42,11 @@ int main() {
         } else if(game->handCount[player] != (handLen+2)) {
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
+<<<<<<< HEAD
         } else if(game->deckCount[player] != (deckSize - 3)) {
+=======
+        } else if(game->deckCount[player] != (deckSize-3)) {
+>>>>>>> 146cb0dd357bc0e5cca1c35e0e0210fd9c7b80bc
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
         } else {
