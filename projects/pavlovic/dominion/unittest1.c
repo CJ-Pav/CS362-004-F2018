@@ -25,7 +25,6 @@ int main() {
         game->deckCount[player] = rand() % MAX_DECK;
         game->handCount[player] = rand() % MAX_HAND;
 
-
         handLen = game->handCount[player];
         deckSize = game->deckCount[player];
         discardCount = game->playedCardCount;
@@ -35,19 +34,13 @@ int main() {
         if(game->playedCardCount != (discardCount+1)) {
             printf("Test %d failed: Smithy card not succesfully discarded\n", i+1);
             testFailed++;
-        }
-
-        else if(game->handCount[player] != (handLen+2)) {
+        } else if(game->handCount[player] != (handLen+2)) {
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
-        }
-
-        else if(game->deckCount[player] != (deckSize - 3)) {
+        } else if(game->deckCount[player] != (deckSize - 3)) {
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
-        }
-
-        else {
+        } else {
             printf("Test %d passed\n", i+1);
             testPassed++;
         }
