@@ -42,7 +42,11 @@ int main() {
         } else if(game->handCount[player] != (handLen+2)) {
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
+<<<<<<< HEAD
+        } else if(game->deckCount[player] != (deckSize - 3)) {
+=======
         } else if(game->deckCount[player] != (deckSize-3)) {
+>>>>>>> 146cb0dd357bc0e5cca1c35e0e0210fd9c7b80bc
             printf("Test %d failed: not enough cards drawn\n", i+1);
             testFailed++;
         } else {
