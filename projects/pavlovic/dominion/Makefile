@@ -41,9 +41,12 @@ cardtests: ct1.c dominion.o playdom rngs.o
 a3-tests: unittests cardtests
 
 unittestresults: playdom player a3-tests
-	./a3-tests &> unittestresult.out
+	./unittests &> unittestresult.out
 	gcov unittests >> unittestresult.out
 	cat unittests.gcov >> unittestresult.out
+	./cardtests >> unittestresult.out
+	gcov cardtests >> unittestresult.out
+	cat cardtests.gcov >> cardtestresults.out
 
 all: playdom player
 
