@@ -40,7 +40,7 @@ cardtests: ct1.c playdom rngs.o
 
 a3-tests: unittests cardtests
 
-unittestresults: playdom player a3-tests
+unittestresults: a3-tests
 	./unittests &> unittestresult.out
 	gcov unittests >> unittestresult.out
 	cat unittests.gcov >> unittestresult.out
