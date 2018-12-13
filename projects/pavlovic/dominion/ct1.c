@@ -37,9 +37,9 @@ int main() {
             cardSmithy(game, 0, player);
 
             if(game->playedCardCount != (discardCount+1)) {
-                printf("Test %d failed: Smithy card not succesfully discarded\n", i+1);
+                printf("Test %d failed: no discard\n", i+1);
                 testFailed++;
-            } else if(game->handCount[player] != (handLen+2)) {
+            } else if(game->handCount[player] != (handLen + 2)) {
                 printf("Test %d failed: not enough cards drawn\n", i+1);
                 testFailed++;
             } else if(game->deckCount[player] != (deckSize - 3)) {
