@@ -1329,6 +1329,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	return -1;
 }
 
+// flag: ut1
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
 {
 
@@ -1344,7 +1345,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   state->hand[currentPlayer][handPos] = -1;
 
   //remove card from player's hand
-  if( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+  if(handPos == (state->handCount[currentPlayer] - 1)) 	//last card in hand array is played
     {
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;

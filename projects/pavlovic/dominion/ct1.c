@@ -15,17 +15,18 @@ int main() {
     int i, testPassed = 0, testFailed = 0, player, players, seed,
         handLen, deckSize, discardCount;
 
-    printf("\n *** CARD TEST 1: SMITHY *** \n");
+    player = 0;
+    players = 2;
 
+    printf("\n *** CARD TEST 1: SMITHY *** \n");
     for(player = 0; player < players; ++players) {
-        for(i = 0; i < 1000; i++) {
+        printf("Running tests for player %d\n", player+1);
+        for(i = 0; i < 100; i++) {
             int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
                              minion, sea_hag, smithy, tribute, village};
-            players = 2;
             seed = rand();
             game = (struct gameState *) malloc(sizeof(struct gameState));
-            initializeGame(players, cards, seed, game);
-            player = 0;
+            // initializeGame(players, cards, seed, game);
             game->deckCount[player] = rand() % MAX_DECK;
             game->handCount[player] = rand() % MAX_HAND;
 
