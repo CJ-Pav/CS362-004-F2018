@@ -14,12 +14,16 @@
  * unit test 1
  * testing: discard()
 ***/
+
+void test(struct gameState *preCall) {
+
+}
+
 int main() {
-    struct gameState *game;
-    int i, numPassed = 0, numFailed = 0, i, is, seed, handLen, deckSize, discardCount;
+    struct gameState *preCall;
+    int numPassed = 0, numFailed = 0, i, is, seed, handLen, deckSize, discardCount;
 
     printf("\n *** UNIT TEST 1 *** \n");
-
 
     for(i = 0; i < 2; i++) {
         int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
@@ -27,7 +31,7 @@ int main() {
         is = 2;
         seed = rand();
         game = (struct gameState *) malloc(sizeof(struct gameState));
-        initializeGame(is, cards, seed, game);
+        initializeGame(i, cards, seed, game);
         i = 0;
 
         while(game->deckCount[i] <= 20)
@@ -39,8 +43,8 @@ int main() {
         deckSize = game->deckCount[i];
         discardCount = game->playedCardCount;
 
-        // card call
-        cardSmithy(game, 0, i);
+        // function call
+        game->discardCard(0, player, preCall, );
 
         if(game->playedCardCount != (discardCount+1)) {
             printf("Test %d failed: Smithy card not succesfully discarded\n", i+1);
