@@ -12,7 +12,7 @@
 
 /***
  * unit test 1
- * testing: shuffle()
+ * testing: discard()
 ***/
 int main() {
     struct gameState *game;
