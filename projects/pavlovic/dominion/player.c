@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
 	char cardName[MAX_STRING_LENGTH];
 
 	//Array to hold bot presence
-	int isBot[MAX_PLAYERS] = { 0, 0, 0, 0};
+	int isBot[MAX_PLAYERS] = {0, 0, 0, 0};
 
 	int players[MAX_PLAYERS];
 	int playerNum;

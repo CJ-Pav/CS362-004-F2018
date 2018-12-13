@@ -86,7 +86,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
       state->supplyCount[duchy] = 12;
       state->supplyCount[province] = 12;
     }
-    
+
   //set number of Treasure cards
   state->supplyCount[copper] = 60 - (7 * numPlayers);
   state->supplyCount[silver] = 40;
@@ -648,7 +648,7 @@ int _adventurer(int drawntreasure, struct gameState *state, int currentPlayer, i
 	***/
     while(drawntreasure<=2) {
 	// while(drawntreasure<2) {
-        if(state->deckCount[currentPlayer] <1){ // if the deck is empty we need to shuffle discard and add to deck
+        if(state->deckCount[currentPlayer] <1) { // if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
         drawCard(currentPlayer, state);

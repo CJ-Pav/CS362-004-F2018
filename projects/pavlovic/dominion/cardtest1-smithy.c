@@ -8,21 +8,20 @@
 #include <time.h>
 
 /***
- * unit test 1
- * testing: shuffle()
+ * testing: smithy()
 ***/
 int main() {
     struct gameState *game;
-    int i, testPassed = 0, testFailed = 0, player, players, seed, handLen, deckSize, discardCount;
+    int i, testPassed = 0, testFailed = 0, player, players, seed,
+        handLen, deckSize, discardCount;
 
-	srand(time(NULL));
+    printf("\n *** CARD TEST 1: SMITHY *** \n");
 
-    printf("\nStarting testing for Smithy\n");
-
+    for(player = 0; player < players; ++players) {
     for(i = 0; i < 1000; i++) {
         int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
                          minion, sea_hag, smithy, tribute, village};
-        players = rand() % MAX_PLAYERS;
+        players = 2;
         seed = rand();
         game = (struct gameState *) malloc(sizeof(struct gameState));
         initializeGame(players, cards, seed, game);
@@ -34,6 +33,7 @@ int main() {
         deckSize = game->deckCount[player];
         discardCount = game->playedCardCount;
 
+        // card call
         cardSmithy(game, 0, player);
 
         if(game->playedCardCount != (discardCount+1)) {
@@ -49,7 +49,6 @@ int main() {
             printf("Test %d passed\n", i+1);
             testPassed++;
         }
-
         free(game);
     }
 
