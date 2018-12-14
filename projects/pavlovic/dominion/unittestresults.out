@@ -1,0 +1,406 @@
+
+ *** UNIT TEST 1 *** 
+Test function: discardCard()
+Running tests for player 1
+ERROR: not enough cards drawn
+Test 1 failed with 1 errors
+ERROR: not enough cards drawn
+Test 2 failed with 1 errors
+ERROR: not enough cards drawn
+Test 3 failed with 1 errors
+ERROR: not enough cards drawn
+Test 4 failed with 1 errors
+ERROR: not enough cards drawn
+Test 5 failed with 1 errors
+ERROR: not enough cards drawn
+Test 6 failed with 1 errors
+ERROR: not enough cards drawn
+Test 7 failed with 1 errors
+ERROR: not enough cards drawn
+Test 8 failed with 1 errors
+ERROR: not enough cards drawn
+Test 9 failed with 1 errors
+ERROR: not enough cards drawn
+Test 10 failed with 1 errors
+ERROR: not enough cards drawn
+Test 11 failed with 1 errors
+ERROR: not enough cards drawn
+Test 12 failed with 1 errors
+ERROR: not enough cards drawn
+Test 13 failed with 1 errors
+ERROR: not enough cards drawn
+Test 14 failed with 1 errors
+ERROR: not enough cards drawn
+Test 15 failed with 1 errors
+ERROR: not enough cards drawn
+Test 16 failed with 1 errors
+ERROR: not enough cards drawn
+Test 17 failed with 1 errors
+ERROR: not enough cards drawn
+Test 18 failed with 1 errors
+ERROR: not enough cards drawn
+Test 19 failed with 1 errors
+ERROR: not enough cards drawn
+Test 20 failed with 1 errors
+ERROR: not enough cards drawn
+Test 21 failed with 1 errors
+ERROR: not enough cards drawn
+Test 22 failed with 1 errors
+ERROR: not enough cards drawn
+Test 23 failed with 1 errors
+ERROR: not enough cards drawn
+Test 24 failed with 1 errors
+ERROR: not enough cards drawn
+Test 25 failed with 1 errors
+Running tests for player 2
+discardCard() test results: 0 tests passed, 25 tests failed
+
+
+ *** UNIT TEST 2 *** 
+Test function: shuffle()
+Error: 57 cards were not moved
+Error: 10 cards were not moved
+Test 1 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 2 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 3 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 4 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 5 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 6 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 7 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 8 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 9 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 10 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 11 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 12 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 13 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 14 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 15 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 16 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 17 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 18 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 19 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 20 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 21 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 22 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 23 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 24 failed with 2 errors
+Error: 5 cards were not moved
+Error: 10 cards were not moved
+Test 25 failed with 2 errors
+shuffle() test results: 0 tests passed, 25 tests failed
+
+File 'unittests.c'
+Lines executed:60.32% of 126
+Creating 'unittests.c.gcov'
+
+        -:    0:Source:unittests.c
+        -:    0:Graph:unittests.gcno
+        -:    0:Data:unittests.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/************************************************
+        -:    2: * Name: Christopher Pavlovich
+        -:    3: * Program: cardtests.c
+        -:    4: ************************************************/
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include "interface.h"
+        -:    8:#include "rngs.h"
+        -:    9:#include <string.h>
+        -:   10:#include <time.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <stdlib.h>
+        -:   13:#include <assert.h>
+        -:   14:// #include "unittest1.h"
+        -:   15:// #include "unittest2.h"
+        -:   16:// #include "unittest3.h"
+        -:   17:// #include "unittest4.h"
+        -:   18:// #include "cardtest1.h"
+        -:   19:// #include "cardtest2.h"
+        -:   20:// #include "cardtest3.h"
+        -:   21:// #include "cardtest4.h"
+        -:   22:
+        -:   23:void unittest1();
+        -:   24:void unittest2();
+        -:   25:void unittest3();
+        -:   26:void unittest4();
+        -:   27:void cardtest1();
+        -:   28:void cardtest2();
+        -:   29:void cardtest3();
+        -:   30:void cardtest4();
+        -:   31:
+        -:   32:int cardSmithy(struct gameState *, int, int);
+        -:   33:
+        1:   34:int main() {
+        1:   35:    unittest1();
+        1:   36:    unittest2();
+        -:   37:    // unittest3();
+        -:   38:    // unittest4();
+        -:   39:    // cardtest1();
+        -:   40:    // cardtest2();
+        -:   41:    // cardtest3();
+        -:   42:    // cardtest4();
+        -:   43:
+        1:   44:    return 0;
+        -:   45:}
+        -:   46:
+        1:   47:void unittest1() {
+        -:   48:    struct gameState curGame;
+        -:   49:    int numPassed, numFailed, i, j, handLen, deckSize, discardCount, curFails;
+        1:   50:    int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
+        -:   51:        minion, sea_hag, smithy, tribute, village};
+        -:   52:
+        1:   53:    srand(time(NULL));
+        -:   54:
+        1:   55:    numPassed = 0;
+        1:   56:    numFailed = 0;
+        1:   57:    j = 0;
+        -:   58:
+        1:   59:    printf("\n *** UNIT TEST 1 *** \n");
+        1:   60:    printf("Test function: discardCard()\n");
+        -:   61:
+        1:   62:    initializeGame(2, cards, 1000, &curGame);
+        -:   63:
+        3:   64:    for(i = 0; i < 2; ++i) { // i is current player
+        2:   65:        printf("Running tests for player %d\n", i+1);
+       27:   66:        while(j < 25) {
+       25:   67:            ++j;
+       25:   68:            curFails = 0;
+        -:   69:
+       26:   70:            while(curGame.deckCount[i] <= 20 || curGame.deckCount[i] >= 450)
+        1:   71:                curGame.deckCount[i] = rand() % MAX_DECK;
+        -:   72:                // curGame.deckCount[i] = 20;
+       27:   73:            while(curGame.handCount[i] <= 3 || curGame.handCount[i] >= 100)
+        2:   74:                curGame.handCount[i] = rand() % MAX_HAND;
+        -:   75:                // curGame.handCount[i] = 3;
+       25:   76:            if(curGame.playedCardCount < 0)
+    #####:   77:                curGame.playedCardCount = 0;
+        -:   78:
+        -:   79:            // flag: remove the following prints
+        -:   80:            // printf("Player hand card count: %d\n", curGame.handCount[i]);
+        -:   81:            // printf("Deck card count: %d\n", curGame.deckCount[i]);
+        -:   82:            // printf("Played card count: %d\n", curGame.playedCardCount);
+        -:   83:
+       25:   84:            handLen = curGame.handCount[i];
+       25:   85:            deckSize = curGame.deckCount[i];
+       25:   86:            discardCount = curGame.playedCardCount;
+        -:   87:
+        -:   88:            // function call
+       25:   89:            discardCard(0, i, &curGame, 0);
+        -:   90:
+       25:   91:            if(curGame.playedCardCount != (discardCount+1)) {
+    #####:   92:                printf("ERROR: card not succesfully discarded\n");
+    #####:   93:                ++curFails;
+        -:   94:            }
+      25*:   95:            if((curGame.handCount[i] != (handLen+2)) || (curGame.deckCount[i] != (deckSize-3))) {
+       25:   96:                printf("ERROR: not enough cards drawn\n");
+       25:   97:                ++curFails;
+        -:   98:            }
+        -:   99:
+       25:  100:            if(curFails) {
+       25:  101:                printf("Test %d failed with %d errors\n", j, curFails);
+       25:  102:                ++numFailed;
+        -:  103:            } else {
+    #####:  104:                printf("Test %d passed\n", j+1);
+    #####:  105:                ++numPassed;
+        -:  106:            }
+       25:  107:            curFails = 0;
+        -:  108:        }
+        -:  109:    }
+        -:  110:
+        1:  111:    printf("discardCard() test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
+        -:  112:
+        1:  113:}
+        -:  114:
+        1:  115:void unittest2() {
+        1:  116:	struct gameState preCall, *postCall=NULL;
+        -:  117:    int numPassed, numFailed, i, j, k, numUnAltered, curFails, status;
+        1:  118:    int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
+        -:  119:        minion, sea_hag, smithy, tribute, village};
+        -:  120:
+        1:  121:	srand(time(NULL));
+        1:  122:    numPassed = 0;
+        1:  123:    numFailed = 0;
+        1:  124:    j = 0;
+        -:  125:
+        1:  126:    printf("\n *** UNIT TEST 2 *** \n");
+        1:  127:    printf("Test function: shuffle()\n");
+        -:  128:
+       26:  129:    while(j < 25) {
+       25:  130:        ++j;
+       25:  131:        curFails = 0;
+       25:  132:		status = 0;
+       25:  133:        postCall = newGame();
+       25:  134:		initializeGame(2, cards, 1000, &preCall);
+       25:  135:        initializeGame(2, cards, 1000, postCall);
+       27:  136:        while(preCall.deckCount[i] <= 20 || preCall.deckCount[i] >= 450)
+        2:  137:            preCall.deckCount[i] = rand() % MAX_DECK;
+        -:  138:            // preCall.deckCount[i] = 20;
+       26:  139:        while(preCall.handCount[i] <= 3 || preCall.handCount[i] >= 100)
+        1:  140:            preCall.handCount[i] = rand() % MAX_HAND;
+        -:  141:            // preCall.handCount[i] = 3;
+       25:  142:        if(preCall.playedCardCount < 0)
+    #####:  143:            preCall.playedCardCount = 0;
+        -:  144:
+        -:  145:
+       25:  146:        postCall->deckCount[i] = preCall.deckCount[i];
+       25:  147:        postCall->handCount[i] = preCall.handCount[i];
+       25:  148:        postCall->playedCardCount = preCall.playedCardCount;
+        -:  149:
+        -:  150:		// function call
+       25:  151:		status = shuffle(i, &preCall);
+        -:  152:        // status += shuffle(i, postCall);
+        -:  153:		// memcpy(postCall, &preCall, sizeof(struct gameState *));
+        -:  154:
+        -:  155:		// validate
+       25:  156:		if(status) {
+    #####:  157:			printf("Error: shuffle returned non-zero status\n");
+    #####:  158:			++curFails;
+        -:  159:		}
+       75:  160:		for(i = 0; i < 2; ++i) { // i is current player
+        -:  161:			if(sizeof(preCall.deck[i]) != sizeof(postCall->deck[i])) {
+        -:  162:				printf("Error: shuffle altered deck size\n");
+        -:  163:				++curFails;
+        -:  164:			} else {
+       50:  165:				numUnAltered = 0;
+      494:  166:				for(k = 0; k < preCall.deckCount[i]; ++k) {
+      444:  167:					if(preCall.deck[i][k] == postCall->deck[i][k]) {
+      427:  168:						++numUnAltered;
+        -:  169:					}
+        -:  170:				}
+       50:  171:				if(numUnAltered) {
+       50:  172:					printf("Error: %d cards were not moved\n", numUnAltered);
+       50:  173:					++curFails;
+        -:  174:				}
+        -:  175:			}
+        -:  176:		}
+        -:  177:
+       25:  178:        if(curFails) {
+       25:  179:            printf("Test %d failed with %d errors\n", j, curFails);
+       25:  180:            ++numFailed;
+        -:  181:        } else {
+    #####:  182:            printf("Test %d passed\n", j+1);
+    #####:  183:            ++numPassed;
+        -:  184:        }
+        -:  185:    }
+        -:  186:
+        1:  187:    printf("shuffle() test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
+        -:  188:
+        1:  189:}
+        -:  190:
+        -:  191:
+    #####:  192:int _assertTrue(int tof) {
+    #####:  193:    if(tof != 0)
+    #####:  194:        return 1;
+    #####:  195:    return 0;
+        -:  196:}
+        -:  197:
+        -:  198:
+    #####:  199:void cardtest1() {
+        -:  200:    struct gameState *game;
+    #####:  201:    int i, testPassed = 0, testFailed = 0, player, players, seed,
+        -:  202:        handLen, deckSize, discardCount;
+        -:  203:
+    #####:  204:    player = 0;
+    #####:  205:    players = 2;
+        -:  206:
+    #####:  207:    printf("\n *** CARD TEST 1: SMITHY *** \n");
+    #####:  208:    for(player = 0; player < players; ++players) {
+    #####:  209:        printf("Running tests for player %d\n", player+1);
+    #####:  210:        for(i = 0; i < 100; i++) {
+    #####:  211:            int cards[10] = {adventurer, council_room, cutpurse, embargo, mine,
+        -:  212:                             minion, sea_hag, smithy, tribute, village};
+    #####:  213:            seed = rand();
+    #####:  214:            game = (struct gameState *) malloc(sizeof(struct gameState));
+        -:  215:            // initializeGame(players, cards, seed, game);
+    #####:  216:            game->deckCount[player] = rand() % MAX_DECK;
+    #####:  217:            game->handCount[player] = rand() % MAX_HAND;
+        -:  218:
+    #####:  219:            handLen = game->handCount[player];
+    #####:  220:            deckSize = game->deckCount[player];
+    #####:  221:            discardCount = game->playedCardCount;
+        -:  222:
+        -:  223:            // card call
+    #####:  224:            cardSmithy(game, 0, player);
+        -:  225:
+    #####:  226:            if(game->playedCardCount != (discardCount+1)) {
+    #####:  227:                printf("Test %d failed: no discard\n", i+1);
+    #####:  228:                testFailed++;
+    #####:  229:            } else if(game->handCount[player] != (handLen + 2)) {
+    #####:  230:                printf("Test %d failed: not enough cards drawn\n", i+1);
+    #####:  231:                testFailed++;
+    #####:  232:            } else if(game->deckCount[player] != (deckSize - 3)) {
+    #####:  233:                printf("Test %d failed: not enough cards drawn\n", i+1);
+    #####:  234:                testFailed++;
+        -:  235:            } else {
+    #####:  236:                printf("Test %d passed\n", i+1);
+    #####:  237:                testPassed++;
+        -:  238:            }
+    #####:  239:            free(game);
+        -:  240:        }
+        -:  241:    }
+        -:  242:
+    #####:  243:    printf("Smithy test results: %d tests passed, %d tests failed\n\n", testPassed, testFailed);
+    #####:  244:}
+        -:  245:
+        -:  246:
+        -:  247:
+    #####:  248:int cardSmithy(struct gameState *game, int handPos, int player) {
+        -:  249:    int i;
+        -:  250:
+        -:  251:    //+3 Cards
+    #####:  252:    for (i = 0; i < 3; i++) {
+    #####:  253:        drawCard(player, game);
+        -:  254:    }
+        -:  255:
+        -:  256:    //discard card from hand
+    #####:  257:    discardCard(handPos, player, game, 0);
+    #####:  258:    return 0;
+        -:  259:
+        -:  260:}

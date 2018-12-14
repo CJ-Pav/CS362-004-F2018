@@ -130,7 +130,9 @@ void unittest2() {
         ++j;
         curFails = 0;
 		status = 0;
+        postCall = newGame();
 		initializeGame(2, cards, 1000, &preCall);
+        initializeGame(2, cards, 1000, postCall);
         while(preCall.deckCount[i] <= 20 || preCall.deckCount[i] >= 450)
             preCall.deckCount[i] = rand() % MAX_DECK;
             // preCall.deckCount[i] = 20;
@@ -140,7 +142,6 @@ void unittest2() {
         if(preCall.playedCardCount < 0)
             preCall.playedCardCount = 0;
 
-        postCall = newGame();
 
         postCall->deckCount[i] = preCall.deckCount[i];
         postCall->handCount[i] = preCall.handCount[i];
@@ -162,7 +163,7 @@ void unittest2() {
 				++curFails;
 			} else {
 				numUnAltered = 0;
-				for(k = 0; k < sizeof(preCall.deck[i]); ++k) {
+				for(k = 0; k < preCall.deckCount[i]; ++k) {
 					if(preCall.deck[i][k] == postCall->deck[i][k]) {
 						++numUnAltered;
 					}
@@ -184,6 +185,7 @@ void unittest2() {
     }
 
     printf("shuffle() test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
+
 }
 
 
