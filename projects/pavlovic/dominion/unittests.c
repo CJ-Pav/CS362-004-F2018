@@ -36,7 +36,7 @@ int main() {
     unittest2();
     // unittest3();
     // unittest4();
-    cardtest1();
+    // cardtest1();
     // cardtest2();
     // cardtest3();
     // cardtest4();
@@ -59,14 +59,13 @@ void unittest1() {
     printf("\n *** UNIT TEST 1 *** \n");
     printf("Test function: discardCard()\n");
 
+    initializeGame(2, cards, 1000, &curGame);
+
     for(i = 0; i < 2; ++i) { // i is current player
         printf("Running tests for player %d\n", i+1);
         while(j < 25) {
             ++j;
             curFails = 0;
-
-            initializeGame(i, cards, 1000, &curGame);
-
 
             while(curGame.deckCount[i] <= 20 || curGame.deckCount[i] >= 450)
                 curGame.deckCount[i] = rand() % MAX_DECK;
@@ -109,7 +108,7 @@ void unittest1() {
         }
     }
 
-    printf("Smithy test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
+    printf("discardCard() test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
 
 }
 
@@ -124,14 +123,14 @@ void unittest2() {
     numFailed = 0;
     j = 0;
 
-    printf("\n *** UNIT TEST 1 *** \n");
+    printf("\n *** UNIT TEST 2 *** \n");
     printf("Test function: shuffle()\n");
 
     while(j < 25) {
         ++j;
         curFails = 0;
 		status = 0;
-		initializeGame(i, cards, 1000, &preCall);
+		initializeGame(2, cards, 1000, &preCall);
         while(preCall.deckCount[i] <= 20 || preCall.deckCount[i] >= 450)
             preCall.deckCount[i] = rand() % MAX_DECK;
             // preCall.deckCount[i] = 20;
@@ -141,10 +140,16 @@ void unittest2() {
         if(preCall.playedCardCount < 0)
             preCall.playedCardCount = 0;
 
+        postCall = newGame();
+
+        postCall->deckCount[i] = preCall.deckCount[i];
+        postCall->handCount[i] = preCall.handCount[i];
+        postCall->playedCardCount = preCall.playedCardCount;
+
 		// function call
 		status = shuffle(i, &preCall);
-		memcpy(postCall, &preCall, sizeof(struct gameState));
-		status += shuffle(i, postCall);
+        // status += shuffle(i, postCall);
+		// memcpy(postCall, &preCall, sizeof(struct gameState *));
 
 		// validate
 		if(status) {
@@ -178,6 +183,7 @@ void unittest2() {
         }
     }
 
+    printf("shuffle() test results: %d tests passed, %d tests failed\n\n", numPassed, numFailed);
 }
 
 
@@ -238,14 +244,15 @@ void cardtest1() {
 
 
 int cardSmithy(struct gameState *game, int handPos, int player) {
+    int i;
+
     //+3 Cards
-    for (i = 0; i < 3; i++)
-    {
-        drawCard(currentPlayer, state);
+    for (i = 0; i < 3; i++) {
+        drawCard(player, game);
     }
 
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    discardCard(handPos, player, game, 0);
     return 0;
 
 }

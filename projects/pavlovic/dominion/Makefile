@@ -44,31 +44,16 @@ player: player.c interface.o
 # ct1.o: cardtest1.c cardtest1.h
 # 	gcc -c cardtest1.c -g $(CFLAGS)
 
-unittests: unittests.c
+unittests: unittests.c dominion.o rngs.o
 	gcc -o unittests unittests.c -g dominion.o rngs.o interface.o $(CFLAGS)
 
 # cardtests: cardtest1.o dominion.o rngs.o
 # 	gcc -o cardtests cardtests.c cardtest1.c -g dominion.o rngs.o $(CFLAGS)
 
-unittestresults: unittests playdom player
+unittestresults: unittests
 	./unittests &> unittestresults.out
-	gcov unittest1.c >> unittestresults.out
-	cat unittest1.c.gcov >> unittestresults.out
-	gcov unittest2.c >> unittestresults.out
-	cat unittest2.c.gcov >> unittestresults.out
-	# gcov unittest3.c >> unittestresults.out
-	# cat unittest3.c.gcov >> unittestresults.out
-	# gcov unittest4.c >> unittestresults.out
-	# cat unittest4.c.gcov >> unittestresults.out
-	# ./cardtests >> unittestresults.out
-	gcov cardtest1.c >> unittestresults.out
-	cat cardtest1.gcov >>  unittestresults.out
-	# gcov cardtest2.c >> unittestresults.out
-	# cat cardtest2.gcov >>  unittestresults.out
-	# gcov cardtest3.c >> unittestresults.out
-	# cat cardtest3.gcov >>  unittestresults.out
-	# gcov cardtest4.c >> unittestresults.out
-	# cat cardtest4.gcov >>  unittestresults.out
+	gcov unittests.c >> unittestresults.out
+	cat unittests.c.gcov >> unittestresults.out
 
 all: playdom player
 
