@@ -1,16 +1,22 @@
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "rngs.h"
-#include "assert.h"
-#include <time.h>
+/************************************************
+ * Name: Christopher Pavlovich
+ * Program: cardtest1.c
+ ************************************************/
+ #include "dominion.h"
+ #include "dominion_helpers.h"
+ #include "interface.h"
+ #include <string.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "rngs.h"
+ #include <assert.h>
+ #include <time.h>
+ #include "cardtest1.h"
 
 /***
  * testing: smithy()
 ***/
-int main() {
+int cardtest1() {
     struct gameState *game;
     int i, testPassed = 0, testFailed = 0, player, players, seed,
         handLen, deckSize, discardCount;

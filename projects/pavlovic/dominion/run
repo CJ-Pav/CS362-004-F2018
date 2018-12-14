@@ -2,4 +2,5 @@
 
 reset
 make clean
-make all  
+make all
+make unittestresults

@@ -2,18 +2,20 @@
  * Name: Christopher Pavlovich
  * Program: unittest3.c
  ************************************************/
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
-#include <string.h>
-#include <cmath>
+ #include "dominion.h"
+ #include "dominion_helpers.h"
+ #include <string.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "rngs.h"
+ #include "assert.h"
+ #include <time.h>
 
 /***
  * unit test 3
  * testing: handCard()
 ***/
-int main(int argc, char *argv[]) {
+int unittest3() {
 	struct gameState G;
 	int i, status = 0, a = -1, set[10] = {adventurer, gardens, embargo, mine, cutpurse,
 		sea_hag, tribute, village, minion, smithy};
